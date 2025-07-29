@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyr Aero Leather - Premium Handcrafted Leather Goods</title>
+    <meta name="description" content="Premium handcrafted leather goods for aviators, adventurers, and everyday explorers. Made with Italian leather and traditional craftsmanship.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern Minimalistic Color Palette */
+        :root {
+            --primary-color: #2D3748; /* Charcoal Gray */
+            --secondary-color: #1A202C; /* Dark Gray */
+            --accent-color: #4A5568; /* Medium Gray */
+            --text-primary: #1A202C; /* Dark text */
+            --text-secondary: #4A5568; /* Medium text */
+            --text-muted: #718096; /* Light text */
+            --background-primary: #FFFFFF; /* Pure white */
+            --background-secondary: #F7FAFC; /* Off white */
+            --background-accent: #EDF2F7; /* Light gray */
+            --border-color: #E2E8F0; /* Light border */
+            --success-color: #48BB78; /* Modern green */
+            --warning-color: #ED8936; /* Modern orange */
+            --error-color: #F56565; /* Modern red */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--background-primary);
+            overflow-x: hidden;
+        }
+
+        /* Modern Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* Advanced Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--background-accent);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            font-weight: 500;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Modern Notification System */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            max-width: 400px;
+        }
+
+        .notification {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--success-color);
+            transform: translateX(450px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left-color: var(--success-color);
+        }
+
+        .notification.error {
+            border-left-color: var(--error-color);
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning-color);
+        }
+
+        .notification-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .notification.success .notification-icon {
+            background: var(--success-color);
+        }
+
+        .notification.error .notification-icon {
+            background: var(--error-color);
+        }
+
+        .notification.warning .notification-icon {
+            background: var(--warning-color);
+        }
+
+        .notification-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .notification-close:hover {
+            background: var(--background-accent);
+            color: var(--text-primary);
+        }
+
+        /* Modern Utility Bar */
+        .utility-bar {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .utility-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .utility-bar a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 400;
+        }
+
+        .utility-bar a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .utility-bar a:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .utility-bar a:hover::after {
+            width: 100%;
+        }
+
+        /* Modern Header */
+        .st-global-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .st-global-header.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .header {
+            padding: 1.5rem 0;
+            transition: padding 0.3s ease;
+        }
+
+        .st-global-header.scrolled .header {
+            padding: 1rem 0;
+        }
+
+        .brand-logo {
+            height: 50px;
+            width: auto;
+            transition: all 0.3s ease;
+            filter: brightness(1);
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Advanced Search */
+        .search-container {
+            position: relative;
+            max-width: 350px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            background: var(--background-secondary);
+            border-radius: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .search-wrapper:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
+            background: white;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 3rem 0.75rem 1.25rem;
+            border: none;
+            background: transparent;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            padding: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .search-btn:hover {
+            color: var(--primary-color);
+            background: var(--background-accent);
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+
+        .search-suggestion {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .search-suggestion:last-child {
+            border-bottom: none;
+        }
+
+        .search-suggestion:hover {
+            background: var(--background-secondary);
+        }
+
+        .search-suggestion-icon {
+            color: var(--text-muted);
+            width: 16px;
+        }
+
+        /* Interactive Cart */
+        .cart-container {
+            position: relative;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: var(--background-secondary);
+            border: 2px solid transparent;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--error-color);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: bounce 0.5s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0,-8px,0); }
+            70% { transform: translate3d(0,-4px,0); }
+            90% { transform: translate3d(0,-2px,0); }
+        }
+
+        /* Modern Navigation */
+        .c-navigation-global__navbar {
+            background: var(--primary-color);
+            padding: 0;
+            position: relative;
+        }
+
+        .c-navigation-global__navbar__nav {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .c-navigation-global__item {
+            position: relative;
+        }
+
+        .c-navigation-global__link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1.25rem 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.025em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .c-navigation-global__link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .c-navigation-global__link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .c-navigation-global__link:hover::before {
+            width: 100%;
+        }
+
+        /* Advanced Mega Menu */
+        .c-megamenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100vw;
+            background: white;
+            box-shadow: var(--shadow-xl);
+            display: none;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .c-navigation-global__item:hover .c-megamenu {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .c-megamenu__inner {
+            padding: 3rem 0;
+        }
+
+        .c-megamenu__collection {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .c-megamenu__collection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 55, 72, 0.05), rgba(74, 85, 104, 0.05));
+            transition: width 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .c-megamenu__collection:hover::before {
+            width: 100%;
+        }
+
+        .c-megamenu__collection h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .c-megamenu__collection ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .c-megamenu__collection li {
+            margin-bottom: 0.5rem;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .c-megamenu__collection:hover li {
+            transform: translateX(5px);
+        }
+
+        .c-megamenu__collection a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 0.25rem 0;
+            display: block;
+            position: relative;
+        }
+
+        .c-megamenu__collection a:hover {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Modern Hero Banner */
+        .c-hero-banner {
+            position: relative;
+            height: 80vh;
+            background: linear-gradient(135deg, rgba(45, 55, 72, 0.8), rgba(74, 85, 104, 0.6)), 
+                        url('https://cdn.zephyraeroleather.com/phelanhelicopter.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .c-hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            animation: gradientShift 10s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        .c-hero-banner__content {
+            max-width: 700px;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .c-hero-banner h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .c-hero-banner p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-weight: 300;
+            line-height: 1.7;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Modern Buttons */
+        .btn-modern {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.025em;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(45, 55, 72, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+
+        .btn-modern:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Interactive Filter Tabs */
+        .filter-section {
+            background: var(--background-secondary);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-tab {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.4s ease;
+            z-index: 1;
+        }
+
+        .filter-tab span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-tab:hover::before,
+        .filter-tab.active::before {
+            left: 0;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Modern Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .product-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--error-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 20px;
+            z-index: 3;
+            animation: slideInDown 0.5s ease-out;
+            box-shadow: var(--shadow-sm);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .action-btn:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-view-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .product-card:hover .quick-view-overlay {
+            transform: translateY(0);
+        }
+
+        .quick-view-btn {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .quick-view-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .product-card-body {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover h4 {
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-add-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-add-cart:hover::before {
+            left: 100%;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-wishlist {
+            width: 45px;
+            height: 45px;
+            background: var(--background-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .btn-wishlist:hover,
+        .btn-wishlist.active {
+            background: var(--error-color);
+            border-color: var(--error-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Interactive Collection Cards */
+        .collections-section {
+            padding: 5rem 0;
+            background: var(--background-primary);
+        }
+
+        .collection-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            height: 100%;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .collection-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .collection-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .collection-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.1) rotate(1deg);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(45, 55, 72, 0.8), rgba(74, 85, 104, 0.6));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .collection-card:hover .collection-overlay {
+            opacity: 1;
+        }
+
+        .collection-explore-btn {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+        }
+
+        .collection-card:hover .collection-explore-btn {
+            transform: translateY(0);
+        }
+
+        .collection-explore-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .collection-card-body {
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .collection-card h3 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .collection-card:hover h3 {
+            color: var(--primary-color);
+        }
+
+        .collection-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .collection-items {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* View All Collections Card */
+        .view-all-card {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .view-all-card::after {
+            display: none;
+        }
+
+        .view-all-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+
+        .view-all-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .view-all-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .view-all-content p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .view-all-card h3,
+        .view-all-card p,
+        .view-all-card .collection-items {
+            color: white;
+        }
+
+        .view-all-card .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .view-all-card .btn-primary:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        /* Modern Heritage Section */
+        .heritage-section {
+            padding: 6rem 0;
+            background: var(--background-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heritage-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(45,55,72,0.05)"/></svg>') repeat;
+            animation: float 30s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .heritage-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .heritage-text h2 {
+            color: var(--text-primary);
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .heritage-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .heritage-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .heritage-image {
+            position: relative;
+        }
+
+        .heritage-image img {
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .heritage-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Interactive Newsletter */
+        .newsletter-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            animation: gradientPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .newsletter-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .newsletter-section p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .newsletter-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-btn {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(45, 55, 72, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .newsletter-btn:hover::before {
+            left: 100%;
+        }
+
+        .newsletter-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Modern Features Section */
+        .features-section {
+            padding: 6rem 0;
+            background: var(--background-primary);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 16px;
+        }
+
+        .feature-item:hover::before {
+            opacity: 0.05;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-item h4 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 10000;
+            transition: width 0.1s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Modern Footer */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .footer a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer a:hover::before {
+            width: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-icons a::before {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .c-hero-banner {
+                background-attachment: scroll;
+                height: 60vh;
+            }
+            
+            .c-hero-banner h1 {
+                font-size: 2.5rem;
+            }
+            
+            .heritage-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .heritage-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .filter-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-primary: #1A202C;
+                --background-secondary: #2D3748;
+                --background-accent: #4A5568;
+                --text-primary: #F7FAFC;
+                --text-secondary: #E2E8F0;
+                --text-muted: #A0AEC0;
+                --border-color: #4A5568;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading Zephyr Experience...</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="/shipping">Free Shipping on Orders $75+</a>
+                    <a href="/stores">Find a Store</a>
+                </div>
+                <div>
+                    <a href="/customer-service">Customer Service</a>
+                    <a href="/contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="st-global-header">
+        <div class="header container">
+            <div class="row">
+                <div class="col-12 d-sm-flex justify-content-between align-items-center">
+                    <!-- Brand Navigation -->
+                    <nav class="s-brand-navigation">
+                        <ul>
+                            <li>
+                                <a href="/" title="Zephyr Aero Leather">
+                                    <img src="/_next/static/media/zephyrlogotransperant.8fc10368.png" 
+                                         alt="Zephyr Aero Leather Logo" class="brand-logo">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Search and Navigation -->
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="search-container d-none d-md-block">
+                            <div class="search-wrapper">
+                                <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
+                                <button class="search-btn" id="searchBtn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <div class="search-suggestions" id="searchSuggestions"></div>
+                            </div>
+                        </div>
+                        
+                        <nav class="d-none d-lg-flex">
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li class="me-3">
+                                    <a href="/account" class="text-decoration-none">
+                                        <i class="fas fa-user me-1"></i>Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="cart-container">
+                                        <div class="cart-icon" onclick="toggleCart()">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <span class="cart-count" id="cartCount">0</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="c-navigation-global__navbar">
+            <div class="container">
+                <ul class="c-navigation-global__navbar__nav">
+                    <li class="c-navigation-global__item">
+                        <a href="/collections" class="c-navigation-global__link">Collections</a>
+                    </li>
+                    <li class="c-navigation-global__item">
+                        <a href="/categories/wallets" class="c-navigation-global__link">Wallets</a>
+                    </li>
+                    <li class="c-navigation-global__item">
+                        <a href="/categories/bags" class="c-navigation-global__link">Bags</a>
+                    </li>
+                    <li class="c-navigation-global__item">
+                        <a href="/categories/belts" class="c-navigation-global__link">Belts</a>
+                    </li>
+                    <li class="c-navigation-global__item">
+                        <a href="/about-us" class="c-navigation-global__link">About</a>
+                    </li>
+                    <li class="c-navigation-global__item">
+                        <a href="/contact" class="c-navigation-global__link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Banner -->
+        <section class="c-hero-banner">
+            <div class="container">
+                <div class="c-hero-banner__content">
+                    <h1>Crafted for Life</h1>
+                    <p>Premium handcrafted leather goods for aviators, adventurers, and everyday explorers. Made with Italian leather and traditional craftsmanship techniques.</p>
+                    <a href="/collections" class="btn-modern">Shop Collections</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mb-4">Filter by Collection</h3>
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">
+                                <span>All Products</span>
+                            </button>
+                            <button class="filter-tab" data-filter="aviator">
+                                <span>Aviator</span>
+                            </button>
+                            <button class="filter-tab" data-filter="adventurer">
+                                <span>Adventurer</span>
+                            </button>
+                            <button class="filter-tab" data-filter="traveler">
+                                <span>Traveler</span>
+                            </button>
+                            <button class="filter-tab" data-filter="commuter">
+                                <span>Commuter</span>
+                            </button>
+                            <button class="filter-tab" data-filter="minimalist">
+                                <span>Minimalist</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Showcase Section -->
+        <section class="collections-section">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12 text-center">
+                        <h2 class="display-5 fw-bold mb-3">Our Collections</h2>
+                        <p class="lead">Five distinct collections designed for different lifestyles and adventures</p>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Aviator Collection -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-card" data-collection="aviator">
+                            <div class="collection-image-container">
+                                <img src="https://cdn.zephyraeroleather.com/phelanhelicopter.jpg" alt="Aviator Collection">
+                                <div class="collection-overlay">
+                                    <button class="collection-explore-btn" onclick="filterProducts('aviator')">Explore Aviator</button>
+                                </div>
+                            </div>
+                            <div class="collection-card-body">
+                                <h3>Aviator</h3>
+                                <p>For those who soar above the clouds. Professional leather goods designed for pilots and aviation enthusiasts.</p>
+                                <div class="collection-items">
+                                    Passport Wallet • Key Chain • Sunglass Case • Eyeglass Case • Flight Bag
+                                </div>
+                                <a href="/collections/aviator" class="btn btn-outline-primary">View Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Adventurer Collection -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-card" data-collection="adventurer">
+                            <div class="collection-image-container">
+                                <img src="https://cdn.zephyraeroleather.com/phelandesert.jpg" alt="Adventurer Collection">
+                                <div class="collection-overlay">
+                                    <button class="collection-explore-btn" onclick="filterProducts('adventurer')">Explore Adventurer</button>
+                                </div>
+                            </div>
+                            <div class="collection-card-body">
+                                <h3>Adventurer</h3>
+                                <p>Built for the great outdoors. Rugged leather goods that can handle any adventure life throws your way.</p>
+                                <div class="collection-items">
+                                    Wallet • Key Chain • Sunglass Case • Eyeglass Case • Saddle Bag
+                                </div>
+                                <a href="/collections/adventurer" class="btn btn-outline-primary">View Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Traveler Collection -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-card" data-collection="traveler">
+                            <div class="collection-image-container">
+                                <img src="https://cdn.zephyraeroleather.com/phelancar.jpg" alt="Traveler Collection">
+                                <div class="collection-overlay">
+                                    <button class="collection-explore-btn" onclick="filterProducts('traveler')">Explore Traveler</button>
+                                </div>
+                            </div>
+                            <div class="collection-card-body">
+                                <h3>Traveler</h3>
+                                <p>Perfect for the journey ahead. Sophisticated leather goods for the modern nomad and world explorer.</p>
+                                <div class="collection-items">
+                                    Wallet • Key Chain • Sunglass Case • Eyeglass Case • Duffle
+                                </div>
+                                <a href="/collections/traveler" class="btn btn-outline-primary">View Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Commuter Collection -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-card" data-collection="commuter">
+                            <div class="collection-image-container">
+                                <img src="https://api.zephyraeroleather.com/wp-content/uploads/2025/03/il_570xN.1640686321_fn80.jpg" alt="Commuter Collection">
+                                <div class="collection-overlay">
+                                    <button class="collection-explore-btn" onclick="filterProducts('commuter')">Explore Commuter</button>
+                                </div>
+                            </div>
+                            <div class="collection-card-body">
+                                <h3>Commuter</h3>
+                                <p>Designed for daily life. Professional leather goods that seamlessly blend style with everyday functionality.</p>
+                                <div class="collection-items">
+                                    Wallet • Key Chain • Sunglass Case • Eyeglass Case • Tote
+                                </div>
+                                <a href="/collections/commuter" class="btn btn-outline-primary">View Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Minimalist Collection -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-card" data-collection="minimalist">
+                            <div class="collection-image-container">
+                                <img src="https://api.zephyraeroleather.com/wp-content/uploads/2025/03/il_570xN.1523426489_78ju.jpg" alt="Minimalist Collection">
+                                <div class="collection-overlay">
+                                    <button class="collection-explore-btn" onclick="filterProducts('minimalist')">Explore Minimalist</button>
+                                </div>
+                            </div>
+                            <div class="collection-card-body">
+                                <h3>Minimalist</h3>
+                                <p>Less is more. Clean, simple leather goods for those who appreciate understated elegance and functionality.</p>
+                                <div class="collection-items">
+                                    Wallet • Key Chain • Sunglass Case • Eyeglass Case • Backpack
+                                </div>
+                                <a href="/collections/minimalist" class="btn btn-outline-primary">View Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- View All Collections -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-card view-all-card">
+                            <div class="collection-image-container">
+                                <div class="view-all-content">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <h4>Explore All Collections</h4>
+                                    <p>Discover our complete range of premium leather goods</p>
+                                </div>
+                            </div>
+                            <div class="collection-card-body">
+                                <h3>All Collections</h3>
+                                <p>Browse through our entire catalog of handcrafted leather goods across all five collections.</p>
+                                <div class="collection-items">
+                                    Complete Range • Premium Quality • Handcrafted Excellence
+                                </div>
+                                <a href="/collections" class="btn btn-primary">View All Collections</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="product-grid-section">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12 text-center">
+                        <h2 class="display-5 fw-bold mb-3">Featured Products</h2>
+                        <p class="lead">Discover our most popular handcrafted leather goods</p>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card" data-collection="aviator" data-product="aviator-passport-wallet">
+                        <div class="product-image-container">
+                            <div class="product-badge">Best Seller</div>
+                            <img src="https://api.zephyraeroleather.com/wp-content/uploads/2025/03/il_570xN.1656371445_7bhe.jpg" alt="Aviator Passport Wallet">
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="openQuickView('aviator-passport-wallet')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-wishlist" onclick="addToWishlist('aviator-passport-wallet')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="quick-view-overlay">
+                                <button class="quick-view-btn" onclick="openQuickView('aviator-passport-wallet')">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-card-body">
+                            <h4>Aviator Passport Wallet</h4>
+                            <p class="product-price">$125.00</p>
+                            <p class="product-description">Handcrafted Italian leather passport wallet with RFID protection.</p>
+                            <div class="product-buttons">
+                                <button class="btn-add-cart" onclick="addToCart('aviator-passport-wallet', 125)">Add to Cart</button>
+                                <button class="btn-wishlist" onclick="addToWishlist('aviator-passport-wallet')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-collection="adventurer" data-product="adventurer-saddle-bag">
+                        <div class="product-image-container">
+                            <div class="product-badge">New</div>
+                            <img src="https://api.zephyraeroleather.com/wp-content/uploads/2025/03/il_570xN.3614774168_emr5.jpg" alt="Adventurer Saddle Bag">
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="openQuickView('adventurer-saddle-bag')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-wishlist" onclick="addToWishlist('adventurer-saddle-bag')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="quick-view-overlay">
+                                <button class="quick-view-btn" onclick="openQuickView('adventurer-saddle-bag')">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-card-body">
+                            <h4>Adventurer Saddle Bag</h4>
+                            <p class="product-price">$189.00</p>
+                            <p class="product-description">Rugged leather saddle bag perfect for outdoor adventures.</p>
+                            <div class="product-buttons">
+                                <button class="btn-add-cart" onclick="addToCart('adventurer-saddle-bag', 189)">Add to Cart</button>
+                                <button class="btn-wishlist" onclick="addToWishlist('adventurer-saddle-bag')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-collection="traveler" data-product="traveler-sunglass-case">
+                        <div class="product-image-container">
+                            <img src="https://api.zephyraeroleather.com/wp-content/uploads/2025/03/il_570xN.2173854407_qfvq.jpg" alt="Traveler Sunglass Case">
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="openQuickView('traveler-sunglass-case')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-wishlist" onclick="addToWishlist('traveler-sunglass-case')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="quick-view-overlay">
+                                <button class="quick-view-btn" onclick="openQuickView('traveler-sunglass-case')">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-card-body">
+                            <h4>Traveler Sunglass Case</h4>
+                            <p class="product-price">$45.00</p>
+                            <p class="product-description">Premium leather sunglass case with soft interior lining.</p>
+                            <div class="product-buttons">
+                                <button class="btn-add-cart" onclick="addToCart('traveler-sunglass-case', 45)">Add to Cart</button>
+                                <button class="btn-wishlist" onclick="addToWishlist('traveler-sunglass-case')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-collection="minimalist" data-product="minimalist-wallet">
+                        <div class="product-image-container">
+                            <img src="https://api.zephyraeroleather.com/wp-content/uploads/2025/03/il_570xN.1523426489_78ju.jpg" alt="Minimalist Wallet">
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="openQuickView('minimalist-wallet')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn btn-wishlist" onclick="addToWishlist('minimalist-wallet')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="quick-view-overlay">
+                                <button class="quick-view-btn" onclick="openQuickView('minimalist-wallet')">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-card-body">
+                            <h4>Minimalist Wallet</h4>
+                            <p class="product-price">$77.00</p>
+                            <p class="product-description">Clean, simple design for those who appreciate minimalism.</p>
+                            <div class="product-buttons">
+                                <button class="btn-add-cart" onclick="addToCart('minimalist-wallet', 77)">Add to Cart</button>
+                                <button class="btn-wishlist" onclick="addToWishlist('minimalist-wallet')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h3>Stay Connected</h3>
+                    <p>Get the latest updates on new products, exclusive offers, and leather care tips.</p>
+                    <form class="newsletter-form">
+                        <div class="newsletter-input-wrapper">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                        </div>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Zephyr Aero Leather</h5>
+                        <p>Premium handcrafted leather goods for aviators, adventurers, and everyday explorers.</p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/ZephyrAeroLeather/" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/zephyr.aero.leather/" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <h5>Collections</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="/collections/aviator">Aviator</a></li>
+                            <li><a href="/collections/adventurer">Adventurer</a></li>
+                            <li><a href="/collections/traveler">Traveler</a></li>
+                            <li><a href="/collections/commuter">Commuter</a></li>
+                            <li><a href="/collections/minimalist">Minimalist</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <h5>Customer Service</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="/shipping">Shipping Info</a></li>
+                            <li><a href="/returns">Returns</a></li>
+                            <li><a href="/warranty">Warranty</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <hr class="my-4" style="border-color: #555;">
+                
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>&copy; 2025 Zephyr Aero Leather. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple JavaScript for basic functionality
+        let cart = JSON.parse(localStorage.getItem('zephyr_cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('zephyr_wishlist')) || [];
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}"></i>
+                </div>
+                <div class="notification-message">${message}</div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => notification.remove(), 4000);
+        }
+
+        // Add to cart
+        function addToCart(productId, price) {
+            const productName = document.querySelector(`[data-product="${productId}"] h4`).textContent;
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id: productId, price: price, quantity: 1, name: productName });
+            }
+            
+            localStorage.setItem('zephyr_cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification(`${productName} added to cart!`, 'success');
+        }
+
+        // Add to wishlist
+        function addToWishlist(productId) {
+            const productName = document.querySelector(`[data-product="${productId}"] h4`).textContent;
+            
+            if (wishlist.includes(productId)) {
+                showNotification('Item already in wishlist', 'warning');
+                return;
+            }
+            
+            wishlist.push(productId);
+            localStorage.setItem('zephyr_wishlist', JSON.stringify(wishlist));
+            showNotification(`${productName} added to wishlist!`, 'success');
+        }
+
+        // Quick view
+        function openQuickView(productId) {
+            const productName = document.querySelector(`[data-product="${productId}"] h4`).textContent;
+            showNotification(`Quick view for ${productName}`, 'info');
+        }
+
+        // Toggle cart
+        function toggleCart() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty', 'warning');
+                return;
+            }
+            showNotification(`Cart has ${cart.length} items`, 'info');
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+
+        // Filter products
+        function filterProducts(filter) {
+            const products = document.querySelectorAll('.product-card');
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            
+            // Update active tab
+            filterTabs.forEach(tab => {
+                if (tab.dataset.filter === filter) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // Filter products with animation
+            products.forEach((product, index) => {
+                const collection = product.dataset.collection;
+                if (filter === 'all' || collection === filter) {
+                    product.style.display = 'block';
+                    setTimeout(() => {
+                        product.style.opacity = '1';
+                        product.style.transform = 'translateY(0)';
+                    }, index * 100);
+                } else {
+                    product.style.opacity = '0';
+                    product.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        product.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Scroll to products section
+            document.querySelector('.product-grid-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            const activeCount = document.querySelectorAll(`.product-card[data-collection="${filter}"]`).length;
+            const totalCount = products.length;
+            const displayCount = filter === 'all' ? totalCount : activeCount;
+            
+            showNotification(`Showing ${displayCount} ${filter === 'all' ? '' : filter} products`, 'info');
+        }
+
+        // Filter products
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const filter = tab.dataset.filter;
+                filterProducts(filter);
+            });
+        });
+
+        // Collection card interactions
+        document.querySelectorAll('.collection-card').forEach(card => {
+            const collection = card.dataset.collection;
+            
+            // Add click handler for collection cards (except view-all)
+            if (collection && !card.classList.contains('view-all-card')) {
+                card.addEventListener('click', (e) => {
+                    // Don't trigger if clicking on buttons
+                    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+                        return;
+                    }
+                    filterProducts(collection);
+                });
+            }
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('.newsletter-input').value;
+            showNotification('Thank you for subscribing!', 'success');
+            e.target.reset();
+        });
+
+        // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (searchTerm.trim()) {
+                showNotification(`Searching for "${searchTerm}"...`, 'info');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            
+            // Hide loading overlay
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 2000);
+            
+            // Scroll progress
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressBar').style.width = scrollPercent + '%';
+            });
+        });
+    </script>
+</body>
+</html>
